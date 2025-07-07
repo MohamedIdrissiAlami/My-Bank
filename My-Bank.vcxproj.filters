@@ -19,6 +19,9 @@
     <Filter Include="Header Files\Screens\Clients">
       <UniqueIdentifier>{b3f0b5e7-bb9f-4412-a10d-72d141c93e99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{7f39d4df-0cd5-4968-8072-f3af418916d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bank.cpp">
@@ -55,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="clsScreen.h">
       <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsPerson.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="clsClients.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
