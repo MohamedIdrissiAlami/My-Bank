@@ -7,6 +7,7 @@ class clsScreen
 public :
 	static void DrawScreenHeader(string Title, string SubTitle = "")
 	{
+		system("cls");
 		cout << "\n\n";
 		cout << setw(100) << "____________________________________________________________";//60
 		cout << "\n\n";
