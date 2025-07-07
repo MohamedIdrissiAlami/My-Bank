@@ -4,7 +4,15 @@
 #include "My-Cpp-Libraries/clsString/clsString.h";
 #include "My-Cpp-Libraries/clsUtil/clsUtil.h";
 #include "clsPerson.h";
+using  namespace std;
 class clsClients :private clsPerson
 {
+private:
+	string _AccountNumber;
+	string _PinCode;
+	float _AccountBalance;
+
+public:
+	//get and set properties
 };
 

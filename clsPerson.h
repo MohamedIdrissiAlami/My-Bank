@@ -9,6 +9,13 @@ private:
 	std::string _Phone;
 
 public:
+	clsPerson(std::string FirstName, std::string LastName, std::string Email, std::string Phone)
+	{
+		this->FirstName = FirstName;
+		this->LastName = LastName;
+		this->Email = Email;
+		this->Phone = Phone;
+	}
 	//get and set properties :
 	void SetFirstName(std::string FirstName)
 	{
