@@ -22,6 +22,9 @@
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{7f39d4df-0cd5-4968-8072-f3af418916d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Global">
+      <UniqueIdentifier>{5a324740-79de-49c2-836b-c7f8760596a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bank.cpp">
@@ -64,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="clsClients.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Header Files\Global</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
