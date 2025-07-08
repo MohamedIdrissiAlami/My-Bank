@@ -15,6 +15,7 @@ private:
 	float _AccountBalance;
 	enum enMode{enAddNewMode,enUpdateMode,enEmptyMode};
 	enMode _Mode;
+	bool MarkedForDelete = false;
 
 	static clsClient _GetEmptyClientObject(string AccountNumber ="")
 	{
@@ -39,6 +40,7 @@ private:
 				Client = _ConvertClientLineToRecord(Line);
 				vClients.push_back(Client);
 			}
+			MyFile.close();
 		}
 		return vClients;
 	}
@@ -63,6 +65,26 @@ private:
 		if (MyFile.is_open())
 		{
 			MyFile << _ConvertCurrentClientToRecord()<<endl;
+			MyFile.close();
+		}
+	}
+
+	void _SaveClientsDataToFile(vector<clsClient> vClients)
+	{
+		fstream MyFile;
+		MyFile.open(ClientsFileName, ios::out);//open file in overwrite mode
+		if (MyFile.is_open())
+		{
+			string Line="";
+			for (clsClient& Client : vClients)
+			{
+				if (!Client.MarkedForDelete)
+				{
+					Line = _ConvertCurrentClientToRecord();
+					MyFile << Line << endl;
+				}
+			}
+			MyFile.close();
 		}
 	}
 public:
@@ -156,6 +178,22 @@ public:
 	bool IsExist()
 	{
 		return IsClientExist(this->AccountNumber);
+	}
+
+	bool Delete()
+	{
+		vector<clsClient>vClients = _LoadClientsFromFileToVector();
+		for (clsClient& Client : vClients)
+		{
+			if (Client.AccountNumber == this->AccountNumber)
+			{
+				Client.MarkedForDelete = true;
+				_SaveClientsDataToFile(vClients);
+				*this = _GetEmptyClientObject();
+				return true;
+			}
+		}
+		return false;
 	}
 
 	enum enSaveResult{eSucceded,eFaildEmptyObject,eFailedClientExists};
