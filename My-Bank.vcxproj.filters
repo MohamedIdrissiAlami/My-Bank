@@ -65,7 +65,7 @@
     <ClInclude Include="clsPerson.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="clsClients.h">
+    <ClInclude Include="clsClient.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Global.h">

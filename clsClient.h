@@ -43,6 +43,28 @@ private:
 		return vClients;
 	}
 	
+	string  _ConvertCurrentClientToRecord()
+	{
+		string ClientRecord = "";
+		ClientRecord += this->FirstName + Separator;
+		ClientRecord += this->LastName + Separator;
+		ClientRecord += this->Email + Separator;
+		ClientRecord += this->Phone + Separator;
+		ClientRecord += this->AccountNumber + Separator;
+		ClientRecord += this->PinCode + Separator;
+		ClientRecord += to_string(this->AccountBalance);
+		return ClientRecord;
+	}
+
+	void _AddNewClient()
+	{
+		fstream MyFile;
+		MyFile.open(ClientsFileName, ios::out | ios::app);//open file in append mode 
+		if (MyFile.is_open())
+		{
+			MyFile << _ConvertCurrentClientToRecord()<<endl;
+		}
+	}
 public:
 	clsClient(enMode Mode,string FirstName, string LastName, string  Email, string Phone, string AccountNumber, string  PinCode, float AccountBalance)
 		:
@@ -114,6 +136,47 @@ public:
 		}
 		return _GetEmptyClientObject(AccountNumber);
 	}
+	static clsClient  GetNewClientObject(string AccountNumber)
+	{
+		return clsClient(enMode::enAddNewMode,"","","","",AccountNumber,"",0);
+	}
 
+	static bool IsClientExist(string AccountNumber)
+	{
+		vector<clsClient>vClients = _LoadClientsFromFileToVector();
+		for (clsClient& Client : vClients)
+		{
+			if (Client.AccountNumber == AccountNumber)
+				return true;
+		}
+		// if you reached here this means the client you are looking for does'nt exist!
+		return false;
+	}
+
+	bool IsExist()
+	{
+		return IsClientExist(this->AccountNumber);
+	}
+
+	enum enSaveResult{eSucceded,eFaildEmptyObject,eFailedClientExists};
+	enSaveResult Save()
+	{
+		switch (this->_Mode)
+		{
+		case enMode::enUpdateMode:
+
+			break;
+		case enMode::enAddNewMode:
+			if (!IsExist())
+			{
+				_AddNewClient();
+				this->_Mode = enMode::enUpdateMode;
+				return enSaveResult::eSucceded;
+			}
+			return enSaveResult::eFailedClientExists;
+		default:
+			return enSaveResult::eFaildEmptyObject;
+		}
+	}
 };
 

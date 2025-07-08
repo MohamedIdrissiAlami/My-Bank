@@ -1,6 +1,6 @@
 #pragma once
 #include "clsScreen.h"
-#include "clsClients.h";
+#include "clsClient.h";
 class clsFindClientScreen :private clsScreen
 {
 private:
