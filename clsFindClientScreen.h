@@ -4,7 +4,6 @@
 class clsFindClientScreen :private clsScreen
 {
 private:
-	static string _AccountNumber;
 
 	static string ReadAccountNumber()
 	{
@@ -37,7 +36,7 @@ public:
 			_PrintClientCard(Client);
 		}
 		else
-			cout << "\n" << setw(40) << "" << "the client with ["<<_AccountNumber<<"] was Not found!:-(";
+			cout << "\n" << setw(40) << "" << "the client with ["<<Client.AccountNumber<<"] was Not found!:-(";
 	}
 };
 

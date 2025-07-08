@@ -16,9 +16,9 @@ private:
 	enum enMode{enAddNewMode,enUpdateMode,enEmptyMode};
 	enMode _Mode;
 
-	static clsClient _GetEmptyClientObject()
+	static clsClient _GetEmptyClientObject(string AccountNumber ="")
 	{
-		return clsClient(enMode::enEmptyMode, "", "", "", "", "", "", 0);
+		return clsClient(enMode::enEmptyMode, "", "", "", "", AccountNumber, "", 0);
 	}
 	static clsClient _ConvertClientLineToRecord(string ClientLine)
 	{
@@ -100,7 +100,7 @@ public:
 				return Client;
 			}
 		}
-		return _GetEmptyClientObject();
+		return _GetEmptyClientObject(AccountNumber);
 	}
 	static clsClient Find(string AccountNumber)
 	{
@@ -112,7 +112,7 @@ public:
 				return Client;
 			}
 		}
-		return _GetEmptyClientObject();
+		return _GetEmptyClientObject(AccountNumber);
 	}
 
 };
