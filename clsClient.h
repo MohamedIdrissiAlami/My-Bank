@@ -87,6 +87,21 @@ private:
 			MyFile.close();
 		}
 	}
+
+	bool _UpdateClientInfo()
+	{
+		vector<clsClient>vClients = _LoadClientsFromFileToVector();
+		for (clsClient& C : vClients)
+		{
+			if (C.AccountNumber == this->AccountNumber)
+			{
+				C = *this;
+				_SaveClientsDataToFile(vClients);
+				return true;
+			}
+		}
+		return false;
+	}
 public:
 	clsClient(enMode Mode,string FirstName, string LastName, string  Email, string Phone, string AccountNumber, string  PinCode, float AccountBalance)
 		:
@@ -202,8 +217,8 @@ public:
 		switch (this->_Mode)
 		{
 		case enMode::enUpdateMode:
-
-			break;
+			if (_UpdateClientInfo())
+				return enSaveResult::eSucceded;
 		case enMode::enAddNewMode:
 			if (!IsExist())
 			{
@@ -215,6 +230,7 @@ public:
 		default:
 			return enSaveResult::eFaildEmptyObject;
 		}
+		return enSaveResult::eFaildEmptyObject;
 	}
 };
 
