@@ -12,12 +12,13 @@ public :
 		cout << "\n";
 		DrawHorizontalBorder(40, '_', 60);
 		cout << "\n";
-		cout << setw(40) << "|" << setw(40) << Title;
+		cout << right<<setw(40) << "|" << setw(40) << Title;
 		cout << "\n\n";
-		cout << setw(40) << "|" << setw(35) << SubTitle;
+		cout << right<<setw(40) << "|" << setw(35) << SubTitle;
 		cout << "\n";
 		DrawHorizontalBorder(40, '_', 60);
 		cout << "\n";
+
 	}
 
 
