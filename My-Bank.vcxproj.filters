@@ -25,6 +25,9 @@
     <Filter Include="Header Files\Global">
       <UniqueIdentifier>{5a324740-79de-49c2-836b-c7f8760596a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Screens\Clients\Transactions">
+      <UniqueIdentifier>{3fea2a4d-4e13-4e97-8e88-3b56522d8b07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bank.cpp">
@@ -42,9 +45,6 @@
       <Filter>Header Files\Screens\Clients</Filter>
     </ClInclude>
     <ClInclude Include="clsFindClientScreen.h">
-      <Filter>Header Files\Screens\Clients</Filter>
-    </ClInclude>
-    <ClInclude Include="clsTransactionsMenuScreen.h">
       <Filter>Header Files\Screens\Clients</Filter>
     </ClInclude>
     <ClInclude Include="clsUpdateClientScreen.h">
@@ -70,6 +70,21 @@
     </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>Header Files\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="clsDepositScreen.h">
+      <Filter>Header Files\Screens\Clients\Transactions</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTotalBalancesScreen.h">
+      <Filter>Header Files\Screens\Clients\Transactions</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTransferScreen.h">
+      <Filter>Header Files\Screens\Clients\Transactions</Filter>
+    </ClInclude>
+    <ClInclude Include="clsWithdrawScreen.h">
+      <Filter>Header Files\Screens\Clients\Transactions</Filter>
+    </ClInclude>
+    <ClInclude Include="clsTransactionsMenuScreen.h">
+      <Filter>Header Files\Screens\Clients\Transactions</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
