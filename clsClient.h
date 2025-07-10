@@ -216,7 +216,10 @@ public:
 		this->AccountBalance += DepositAmount;
 		return this->Save() == enSaveResult::eSucceded;
 	}
-
+	bool Withdraw(float WithdrawAmount)
+	{
+		return WithdrawAmount > this->AccountBalance ? false : this->Deposit(WithdrawAmount * (-1));
+	}
 	static  vector<clsClient> GetClientsList()
 	{
 		return _LoadClientsFromFileToVector();
