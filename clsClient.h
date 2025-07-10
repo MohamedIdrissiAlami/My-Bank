@@ -211,6 +211,12 @@ public:
 		return false;
 	}
 
+	bool Deposit(float DepositAmount)
+	{
+		this->AccountBalance += DepositAmount;
+		return this->Save() == enSaveResult::eSucceded;
+	}
+
 	static  vector<clsClient> GetClientsList()
 	{
 		return _LoadClientsFromFileToVector();
