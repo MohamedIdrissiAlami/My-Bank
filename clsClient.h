@@ -228,7 +228,16 @@ public:
 	{
 		return _LoadClientsFromFileToVector();
 	}
-
+	static float GetTotalBalances()
+	{
+		float TotalBalances = 0;
+		vector<clsClient>vClients = _LoadClientsFromFileToVector();
+		for (clsClient& C : vClients)
+		{
+			TotalBalances += C.AccountBalance;
+		}
+		return TotalBalances;
+	}
 	enum enSaveResult{eSucceded,eFaildEmptyObject,eFailedClientExists};
 	enSaveResult Save()
 	{
