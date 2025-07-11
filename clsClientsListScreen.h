@@ -30,12 +30,21 @@ public  :
 		cout << left << setw(10) << "|PIN CODE";
 		cout << left << setw(20) << "|ACC.BALANCE"<<"|";
 		clsScreen::DrawHorizontalBorder(10, '_', 130);
-		
-		for (clsClient& C : vClients)
+		if (!vClients.empty())
 		{
-			_PrintClientRecordLine(C);
+			for (clsClient& C : vClients)
+			{
+				_PrintClientRecordLine(C);
+				clsScreen::DrawHorizontalBorder(10, '_', 130);
+			}
+
+		}
+		else
+		{
+			cout << right << setw(60) << "" << "no available clients in the system!";
 			clsScreen::DrawHorizontalBorder(10, '_', 130);
 		}
+
 
 	}
 };
