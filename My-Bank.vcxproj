@@ -127,11 +127,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clsAddNewClientScreen.h" />
+    <ClInclude Include="clsAddNewUserScreen.h" />
     <ClInclude Include="clsClient.h" />
     <ClInclude Include="clsClientsListScreen.h" />
     <ClInclude Include="clsDeleteClientScreen.h" />
+    <ClInclude Include="clsDeleteUserScreen.h" />
     <ClInclude Include="clsDepositScreen.h" />
     <ClInclude Include="clsFindClientScreen.h" />
+    <ClInclude Include="clsFindUserScreen.h" />
     <ClInclude Include="clsLoginRegisterScreen.h" />
     <ClInclude Include="clsMainScreen.h" />
     <ClInclude Include="clsManageUsersMenuScreen.h" />
@@ -141,6 +144,8 @@
     <ClInclude Include="clsTransactionsMenuScreen.h" />
     <ClInclude Include="clsTransferScreen.h" />
     <ClInclude Include="clsUpdateClientScreen.h" />
+    <ClInclude Include="clsUpdateUserScreen.h" />
+    <ClInclude Include="clsUsersListScreen.h" />
     <ClInclude Include="clsWithdrawScreen.h" />
     <ClInclude Include="Global.h" />
   </ItemGroup>
