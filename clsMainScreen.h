@@ -92,15 +92,15 @@ public:
 	static  void ShowMainMenuScreen()
 	{
 		clsScreen::DrawScreenHeader("M A I N   M E N U", "SCREEN");
-		cout		<<setw(40) << "|" << "\t[1] SHOW CLIENTS LIST";
-		cout << "\n"<<setw(40) << "|" << "\t[2] ADD NEW  CLIENT(S)";
-		cout << "\n"<<setw(40) << "|" << "\t[3] DELETE CLIENT";
-		cout << "\n"<<setw(40) << "|" << "\t[4] UPDATE CLIENT";
-		cout << "\n"<<setw(40) << "|" << "\t[5] FIND CLIENT";
-		cout << "\n"<<setw(40) << "|" << "\t[6] TRANSACTIONS";
-		cout << "\n"<<setw(40) << "|" << "\t[7] MANAGE USER(S)";
-		cout << "\n"<<setw(40) << "|" << "\t[8] LOGING REGISTER";
-		cout << "\n"<<setw(40) << "|" << "\t[9] LOGOUT";
+		cout		<<right<<setw(40) << "|" << "\t[1] SHOW CLIENTS LIST";
+		cout << "\n"<<right<<setw(40) << "|" << "\t[2] ADD NEW  CLIENT(S)";
+		cout << "\n"<<right<<setw(40) << "|" << "\t[3] DELETE CLIENT";
+		cout << "\n"<<right<<setw(40) << "|" << "\t[4] UPDATE CLIENT";
+		cout << "\n"<<right<<setw(40) << "|" << "\t[5] FIND CLIENT";
+		cout << "\n"<<right<<setw(40) << "|" << "\t[6] TRANSACTIONS";
+		cout << "\n"<<right<<setw(40) << "|" << "\t[7] MANAGE USER(S)";
+		cout << "\n"<<right<<setw(40) << "|" << "\t[8] LOGING REGISTER";
+		cout << "\n"<<right<<setw(40) << "|" << "\t[9] LOGOUT";
 		cout << "\n";
 		cout << setw(100) << "____________________________________________________________";//60
 		cout << "\n";
