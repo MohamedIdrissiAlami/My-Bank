@@ -239,5 +239,49 @@ public:
 
     }
 
+    static std::string NumberToText(int Number)
+    {
+        if (Number == 0)
+            return "";
+        if (Number > 0 && Number < 10)
+        {
+            std::string sNumber[9] = { "One","Two","Three","Four","Five","Six","Seven","Eight","Nine" };
+            return sNumber[Number - 1];
+        }
+        if (Number >= 10 && Number < 20)
+        {
+            std::string sNumber[10] = { "Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen","Seventeen","Eighteen","Nineteen" };
+            return sNumber[Number % 10 - 1];
+        }
+        if (Number >= 20 && Number < 100)
+        {
+            std::string sNumber[10] = { "","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety" };
+            return sNumber[Number / 10] + " " + NumberToText(Number % 10);
+        }
+        if (Number < 1000 && Number >= 100)
+        {
+            return NumberToText(int(Number / 100)) + " Hundred " + NumberToText(Number % 100);
+        }
+        if (Number >= 1000 && Number < 1000000)
+        {
+            return NumberToText(int(Number / 1000)) + " Thousand , " + NumberToText(Number % 1000);
+        }
+        if (Number >= 1000000 && Number < 1000000000)
+        {
+            return NumberToText(int(Number / 1000000)) + " Million , " + NumberToText(Number % 1000000);
+        }
+        if (Number >= 1000000000 && Number <= 4000000000)
+        {
+            return NumberToText(int(Number / 1000000000)) + " Billon , " + NumberToText(Number % 1000000000);
+        }
+
+        if (Number > 4000000000)
+        {
+            return " Zero ";
+        }
+
+    }
+
+
 };
 
