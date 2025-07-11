@@ -25,7 +25,7 @@ private:
 	static enTransactionsMenuOption _ReadTransactionsMenuOption()
 	{
 		cout << "\n" << setw(40) << "";
-		return (enTransactionsMenuOption)clsInputValidate::ReadNumberBetween<short>(1, 9, "Choose what do you wanna do [1~9] ");
+		return (enTransactionsMenuOption)clsInputValidate::ReadNumberBetween<short>(1, 5, "Choose what do you wanna do [1~5] ");
 	}
 
 	static void  _PerformTransactionMenuOption(enTransactionsMenuOption Option)
