@@ -45,16 +45,16 @@ private:
 		return vClients;
 	}
 	
-	string  _ConvertCurrentClientToRecord()
+	string  _ConvertClientRecordToLine(clsClient Client)
 	{
 		string ClientRecord = "";
-		ClientRecord += this->FirstName + Separator;
-		ClientRecord += this->LastName + Separator;
-		ClientRecord += this->Email + Separator;
-		ClientRecord += this->Phone + Separator;
-		ClientRecord += this->AccountNumber + Separator;
-		ClientRecord += this->PinCode + Separator;
-		ClientRecord += to_string(this->AccountBalance);
+		ClientRecord += Client.FirstName + Separator;
+		ClientRecord += Client.LastName + Separator;
+		ClientRecord += Client.Email + Separator;
+		ClientRecord += Client.Phone + Separator;
+		ClientRecord += Client.AccountNumber + Separator;
+		ClientRecord += Client.PinCode + Separator;
+		ClientRecord += to_string(Client.AccountBalance);
 		return ClientRecord;
 	}
 
@@ -64,7 +64,7 @@ private:
 		MyFile.open(ClientsFileName, ios::out | ios::app);//open file in append mode 
 		if (MyFile.is_open())
 		{
-			MyFile << _ConvertCurrentClientToRecord()<<endl;
+			MyFile << _ConvertClientRecordToLine(*this)<<endl;
 			MyFile.close();
 		}
 	}
@@ -80,7 +80,7 @@ private:
 			{
 				if (!Client.MarkedForDelete)
 				{
-					Line = _ConvertCurrentClientToRecord();
+					Line = _ConvertClientRecordToLine(Client);
 					MyFile << Line << endl;
 				}
 			}
@@ -219,6 +219,10 @@ public:
 	bool Withdraw(float WithdrawAmount)
 	{
 		return WithdrawAmount > this->AccountBalance ? false : this->Deposit(WithdrawAmount * (-1));
+	}
+	bool Transfer(clsClient Receiver, float TransferAmount)
+	{
+		return this->Withdraw(TransferAmount) && Receiver.Deposit(TransferAmount);
 	}
 	static  vector<clsClient> GetClientsList()
 	{
