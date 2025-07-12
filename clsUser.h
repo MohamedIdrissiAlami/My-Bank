@@ -26,6 +26,48 @@ private:
 		vector<string>vSplit = clsString::Split(UserLine, Separator);
 		return clsUser(enMode::enUpdateMode, vSplit[0], vSplit[1], vSplit[2], vSplit[3], vSplit[4], vSplit[5], stoi(vSplit[6]));
 	}
+	static vector<clsUser>_LoadUsersFromFileToVector(string FileName = UsersFileName)
+	{
+		vector<clsUser>vUsers;
+		fstream MyFile;
+		MyFile.open(FileName, ios::in);//open file in read mode 
+		if (MyFile.is_open())
+		{
+			string Line = "";
+			clsUser User = _GetEmptyUserObject();
+			while (getline(MyFile, Line))
+			{
+				User = _ConvertUserLineToRecord(Line);
+				vUsers.push_back(User);
+			}
+			MyFile.close();
+		}
+		return vUsers;
+	}
+
+	string  _ConvertUserRecordToLine(clsUser User)
+	{
+		string UserRecord = "";
+		UserRecord += User.FirstName + Separator;
+		UserRecord += User.LastName + Separator;
+		UserRecord += User.Email + Separator;
+		UserRecord += User.Phone + Separator;
+		UserRecord += User.UserName + Separator;
+		UserRecord += User.Password + Separator;
+		UserRecord += to_string(User.Permissions);
+		return UserRecord;
+	}
+
+	void _AddNewUser()
+	{
+		fstream MyFile;
+		MyFile.open(UsersFileName, ios::out | ios::app);//open file in append mode 
+		if (MyFile.is_open())
+		{
+			MyFile << _ConvertUserRecordToLine(*this) << endl;
+			MyFile.close();
+		}
+	}
 
 public :
 
@@ -117,4 +159,48 @@ public :
 	{
 		return this->_Mode == enMode::enEmptyMode;
 	}
+
+	static bool IsUserExist(string UserName)
+	{
+		vector<clsUser>vUsers = _LoadUsersFromFileToVector();
+		for (clsUser& User : vUsers)
+		{
+			if (User.UserName == UserName)
+				return true;
+		}
+		// if you reached here this means the User you are looking for does'nt exist!
+		return false;
+	}
+	bool IsExist()
+	{
+		return IsUserExist(this->UserName);
+	}
+	static clsUser  GetNewUserObject(string UserName)
+	{
+		return clsUser(enMode::enAddNewMode, "", "", "", "", UserName, "", 0);
+	}
+
+
+	enum enSaveResult { eSucceded, eFaildEmptyObject, eFailedUserExists };
+	enSaveResult Save()
+	{
+		switch (this->_Mode)
+		{
+		case enMode::enUpdateMode:
+			//if (_UpdateUserInfo())
+				return enSaveResult::eSucceded;
+		case enMode::enAddNewMode:
+			if (!IsExist())
+			{
+				_AddNewUser();
+				this->_Mode = enMode::enUpdateMode;
+				return enSaveResult::eSucceded;
+			}
+			return enSaveResult::eFailedUserExists;
+		default:
+			return enSaveResult::eFaildEmptyObject;
+		}
+		return enSaveResult::eFaildEmptyObject;
+	}
+
 };
