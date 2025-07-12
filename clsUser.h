@@ -230,6 +230,10 @@ public :
 		return false;
 	}
 
+	static  vector<clsUser> GetUsersList()
+	{
+		return _LoadUsersFromFileToVector();
+	}
 
 	enum enSaveResult { eSucceded, eFaildEmptyObject, eFailedUserExists };
 	enSaveResult Save()
