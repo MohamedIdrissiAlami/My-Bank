@@ -88,6 +88,20 @@ private:
 		}
 	}
 
+	bool _UpdateUserInfo()
+	{
+		vector<clsUser>vUsers = _LoadUsersFromFileToVector();
+		for (clsUser& C : vUsers)
+		{
+			if (C.UserName == this->UserName)
+			{
+				C = *this;
+				_SaveUsersDataToFile(vUsers);
+				return true;
+			}
+		}
+		return false;
+	}
 
 public :
 
@@ -223,7 +237,7 @@ public :
 		switch (this->_Mode)
 		{
 		case enMode::enUpdateMode:
-			//if (_UpdateUserInfo())
+			if (_UpdateUserInfo())
 				return enSaveResult::eSucceded;
 		case enMode::enAddNewMode:
 			if (!IsExist())
