@@ -69,6 +69,26 @@ private:
 		}
 	}
 
+	void _SaveUsersDataToFile(vector<clsUser> vUsers)
+	{
+		fstream MyFile;
+		MyFile.open(UsersFileName, ios::out);//open file in overwrite mode
+		if (MyFile.is_open())
+		{
+			string Line = "";
+			for (clsUser& User : vUsers)
+			{
+				if (!User.MarkedForDelete)
+				{
+					Line = _ConvertUserRecordToLine(User);
+					MyFile << Line << endl;
+				}
+			}
+			MyFile.close();
+		}
+	}
+
+
 public :
 
 	clsUser(enMode Mode, string FirstName, string LastName, string  Email, string Phone, string UserName, string  Password, float Permissions)
@@ -178,6 +198,22 @@ public :
 	static clsUser  GetNewUserObject(string UserName)
 	{
 		return clsUser(enMode::enAddNewMode, "", "", "", "", UserName, "", 0);
+	}
+
+	bool Delete()
+	{
+		vector<clsUser>vUsers = _LoadUsersFromFileToVector();
+		for (clsUser& User : vUsers)
+		{
+			if (User.UserName == this->UserName)
+			{
+				User.MarkedForDelete = true;
+				_SaveUsersDataToFile(vUsers);
+				*this = _GetEmptyUserObject();
+				return true;
+			}
+		}
+		return false;
 	}
 
 
