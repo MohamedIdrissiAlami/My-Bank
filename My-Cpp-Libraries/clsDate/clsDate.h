@@ -104,6 +104,27 @@ public:
 		return clsDate(Day, Month, Year);
 	}
 
+	static std::string GetSystemDateTimeString()
+	{
+		//system Date time : 
+		time_t t = time(0);
+		tm* now = localtime(&t);
+		short Year = now->tm_year + 1900;
+		short Month = now->tm_mon + 1;
+		short Day = now->tm_mday;
+		short Hour = now->tm_hour;
+		short Minute = now->tm_min;
+		short Second = now->tm_sec;
+		std::string sDateTime = "";
+		sDateTime += std::to_string(Year) + "/";
+		sDateTime += std::to_string(Month) + "/";
+		sDateTime += std::to_string(Day) + "  ";
+		sDateTime += std::to_string(Hour) + ":";
+		sDateTime += std::to_string(Minute) + ":";
+		sDateTime += std::to_string(Second);
+		return sDateTime;
+	}
+
     static	bool IsValidDate(clsDate Date)
 	{
 
