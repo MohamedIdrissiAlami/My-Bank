@@ -83,9 +83,6 @@
     <ClInclude Include="clsTransactionsMenuScreen.h">
       <Filter>Header Files\Screens\Clients\Transactions</Filter>
     </ClInclude>
-    <ClInclude Include="clsMainScreen.h">
-      <Filter>Header Files\Screens\Clients</Filter>
-    </ClInclude>
     <ClInclude Include="clsManageUsersMenuScreen.h">
       <Filter>Header Files\Screens\Users</Filter>
     </ClInclude>
@@ -106,6 +103,15 @@
     </ClInclude>
     <ClInclude Include="clsUser.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="clsLoginScreen.h">
+      <Filter>Header Files\Screens</Filter>
+    </ClInclude>
+    <ClInclude Include="clsMainScreen.h">
+      <Filter>Header Files\Screens</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

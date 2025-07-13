@@ -1,15 +1,15 @@
 #pragma once
-#include "./clsScreen.h";
-#include "./My-Cpp-Libraries/clsInputValidate/clsInputValidate.h";
-#include "./clsClientsListScreen.h";
-#include "./clsAddNewClientScreen.h";
-#include "./clsDeleteClientScreen.h";
-#include "./clsUpdateClientScreen.h";
-#include "./clsFindClientScreen.h";
-#include "./clsTransactionsMenuScreen.h";
-#include "./clsManageUsersMenuScreen.h";
-#include "./clsLoginRegisterScreen.h";
-
+#include "./clsScreen.h"
+#include "./My-Cpp-Libraries/clsInputValidate/clsInputValidate.h"
+#include "./clsClientsListScreen.h"
+#include "./clsAddNewClientScreen.h"
+#include "./clsDeleteClientScreen.h"
+#include "./clsUpdateClientScreen.h"
+#include "./clsFindClientScreen.h"
+#include "./clsTransactionsMenuScreen.h"
+#include "./clsManageUsersMenuScreen.h"
+#include "./clsLoginRegisterScreen.h"
+#include "./clsLoginScreen.h"
 class clsMainScreen :private clsScreen
 {
 private :
@@ -82,8 +82,6 @@ private :
 			clsLoginRegisterScreen::ShowLoginRegisterScreen();
 			_GoBackToMainMenuScreen();
 			break;
-		case enMainMenuOption::eLogout:
-			return;
 		default:
 			return;
 		}

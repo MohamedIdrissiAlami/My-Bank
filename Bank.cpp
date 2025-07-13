@@ -1,6 +1,10 @@
-#include "./clsMainScreen.h";
+#include "./clsLoginScreen.h"
+#include "./clsMainScreen.h"
 int main()
 {
-	clsMainScreen::ShowMainMenuScreen();
+	while (clsLoginScreen::ShowLoginScreen())
+	{
+		clsMainScreen::ShowMainMenuScreen();
+	}
 	return 0;
 }
