@@ -16,6 +16,15 @@ private:
 	enum enMode { enAddNewMode, enUpdateMode, enEmptyMode };
 	enMode _Mode;
 	bool MarkedForDelete = false;
+public:
+	struct stLoginInfo
+	{
+		string FullName = "";
+		string Username = "";
+		short Permissions = 0;
+		string sDateTime = clsDate::GetSystemDateTimeString();
+	};
+private:
 
 	static clsUser _GetEmptyUserObject(string UserName="")
 	{
@@ -103,16 +112,26 @@ private:
 		return false;
 	}
 
-	string _PrepareLoginRegisterLine()
+	string _PrepareLoginRegisterLine(stLoginInfo LoginRegister)
 	{
 		string LoginLine = "";
-		LoginLine += this->FullName() + Separator;
-		LoginLine += this->UserName+Separator;
-		LoginLine += std::to_string(this->Permissions)+Separator;
-		LoginLine += clsDate::GetSystemDateTimeString();
+		LoginLine += LoginRegister.FullName + Separator;
+		LoginLine += LoginRegister.Username+Separator;
+		LoginLine += std::to_string(LoginRegister.Permissions)+Separator;
+		LoginLine += LoginRegister.sDateTime;
 		return LoginLine;
 	}
 
+	static  stLoginInfo _ConvertLoginRegisterLineToRecord(string Line)
+	{
+		vector<string>vSplit = clsString::Split(Line, Separator);
+		stLoginInfo Login;
+		Login.FullName = vSplit.at(0);
+		Login.Username = vSplit.at(1);
+		Login.Permissions = stoi(vSplit.at(2));
+		Login.sDateTime = vSplit.at(3);
+		return Login;
+	}
 public :
 
 	clsUser(enMode Mode, string FirstName, string LastName, string  Email, string Phone, string UserName, string  Password, float Permissions)
@@ -267,16 +286,35 @@ public :
 		return enSaveResult::eFaildEmptyObject;
 	}
 
-
-
 	void RegisterLogin()
 	{
 		fstream MyFile;
+		stLoginInfo LoginRegister;
+		LoginRegister.FullName = this->FullName();
+		LoginRegister.Username = this->UserName;
+		LoginRegister.Permissions = this->Permissions;
 		MyFile.open(LoginRegisterFileName,ios::out|ios::app);//open file in append mode
 		if (MyFile.is_open())
 		{
-			MyFile << _PrepareLoginRegisterLine() << endl;
+			MyFile << _PrepareLoginRegisterLine(LoginRegister) << endl;
 			MyFile.close();
 		}
+	}
+
+	static vector<stLoginInfo>GetLoginLogs()
+	{
+		vector<stLoginInfo>vLogs;
+		fstream MyFile;
+		MyFile.open(LoginRegisterFileName, ios::in);//read mode
+		if (MyFile.is_open())
+		{
+			string Line = "";
+			while (getline(MyFile, Line))
+			{
+				vLogs.push_back(_ConvertLoginRegisterLineToRecord(Line));
+			}
+			MyFile.close();
+		}
+		return vLogs;
 	}
 };
