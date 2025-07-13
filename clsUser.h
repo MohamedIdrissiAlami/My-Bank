@@ -103,12 +103,13 @@ private:
 		return false;
 	}
 
-	string _CreateLoginRecordLine()
+	string _PrepareLoginRegisterLine()
 	{
 		string LoginLine = "";
 		LoginLine += this->FullName() + Separator;
 		LoginLine += this->UserName+Separator;
-		LoginLine += this->Permissions;
+		LoginLine += std::to_string(this->Permissions)+Separator;
+		LoginLine += clsDate::GetSystemDateTimeString();
 		return LoginLine;
 	}
 
@@ -266,13 +267,15 @@ public :
 		return enSaveResult::eFaildEmptyObject;
 	}
 
+
+
 	void RegisterLogin()
 	{
 		fstream MyFile;
 		MyFile.open(LoginRegisterFileName,ios::out|ios::app);//open file in append mode
 		if (MyFile.is_open())
 		{
-			MyFile << _CreateLoginRecordLine() << endl;
+			MyFile << _PrepareLoginRegisterLine() << endl;
 			MyFile.close();
 		}
 	}
