@@ -4,7 +4,7 @@
 #include "My-Cpp-Libraries/clsString/clsString.h"
 #include "My-Cpp-Libraries/clsUtil/clsUtil.h"
 #include "clsPerson.h"
-#include "Global.h"
+#include "Config.h"
 #include <fstream>
 using  namespace std;
 class clsUser:public clsPerson
@@ -101,6 +101,15 @@ private:
 			}
 		}
 		return false;
+	}
+
+	string _CreateLoginRecordLine()
+	{
+		string LoginLine = "";
+		LoginLine += this->FullName() + Separator;
+		LoginLine += this->UserName+Separator;
+		LoginLine += this->Permissions;
+		return LoginLine;
 	}
 
 public :
@@ -257,4 +266,14 @@ public :
 		return enSaveResult::eFaildEmptyObject;
 	}
 
+	void RegisterLogin()
+	{
+		fstream MyFile;
+		MyFile.open(LoginRegisterFileName,ios::out|ios::app);//open file in append mode
+		if (MyFile.is_open())
+		{
+			MyFile << _CreateLoginRecordLine() << endl;
+			MyFile.close();
+		}
+	}
 };
