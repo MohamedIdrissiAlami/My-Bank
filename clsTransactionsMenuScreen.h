@@ -61,6 +61,9 @@ public :
 	static void ShowTransactionsMenuScreen()
 	{
 		//cout << "\nTransactions menu screen will be here.. ";
+		if (!clsScreen::CheckAccessRights(clsUser::enPermissions::pTransactions))
+			return;
+
 		clsScreen::DrawScreenHeader("T R A N S A C T I O N S  M E N U", "SCREEN");
 		cout <<         setw(40) << "|" << "\t[1] D E P O S I T";
 		cout << "\n" << setw(40) << "|" << "\t[2] W I T H R A W";

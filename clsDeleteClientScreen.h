@@ -28,6 +28,9 @@ public:
 	static void ShowDeleteClientScreen()
 	{
 		//cout << "\ndelete client screen will be here..";
+		if (!clsScreen::CheckAccessRights(clsUser::enPermissions::pDeleteClient))
+			return;
+
 		clsScreen::DrawScreenHeader("D E L E T E   C L I E N T", "SCREEN");
 		clsClient Client = clsClient::Find(ReadAccountNumber());
 		char Answer = 'n';

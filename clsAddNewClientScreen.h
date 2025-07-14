@@ -52,6 +52,9 @@ public :
 	static void ShowAddNewClientScreen()
 	{
 		//cout << "\nadd new client screen will be here ..";
+		if (!clsScreen::CheckAccessRights(clsUser::enPermissions::pAddNewClient))
+			return;
+
 		string AccountNumber = "";
 		char AddMore = 'n';
 		do

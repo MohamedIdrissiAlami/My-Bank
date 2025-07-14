@@ -28,6 +28,9 @@ public:
 	static void ShowFindClientScreen()
 	{
 		//cout << "\nFind Client Screen Will be here..";
+		if (!clsScreen::CheckAccessRights(clsUser::enPermissions::pFindClient))
+			return;
+
 		clsScreen::DrawScreenHeader("F I N D   C L I E N T", "SCREEN");
 		clsClient Client = clsClient::Find(ReadAccountNumber());
 		if (!Client.IsEmptyClientObject())

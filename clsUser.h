@@ -317,4 +317,11 @@ public :
 		}
 		return vLogs;
 	}
+
+	bool HasAccessTo(enPermissions Permission)
+	{
+		if (this->Permissions == enPermissions::pFullAccess)
+			return true;
+		return (this->Permissions&Permission) == Permission;
+	}
 };

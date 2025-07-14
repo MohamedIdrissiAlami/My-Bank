@@ -19,6 +19,8 @@ public  :
 	static void  ShowClientsListScreen()
 	{
 		//cout << "\nclients list will be here ..";
+		if (!clsScreen::CheckAccessRights(clsUser::enPermissions::pShowClientsList))
+			return;
 		vector<clsClient> vClients = clsClient::GetClientsList();
 		clsScreen::DrawScreenHeader("C L I E N T S   L I S T", "(" + to_string(vClients.size()) + ") CLIENT(S)");
 		clsScreen::DrawHorizontalBorder(10, '_', 130);

@@ -62,6 +62,9 @@ public :
 	static void ShowUpdateClientScreen()
 	{
 		//cout << "\nUpdate client screen will be here..";
+		if (!clsScreen::CheckAccessRights(clsUser::enPermissions::pUpdateClient))
+			return;
+
 			clsScreen::DrawScreenHeader("U P D A T E   C L I E N T", "SCREEN");
 			clsClient Client = clsClient::Find(ReadAccountNumber());
 			char Answer = 'n';

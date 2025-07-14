@@ -17,6 +17,9 @@ public:
 	static void ShowLoginRegisterScreen()
 	{
 		//cout << "\nlogin register screen will be here..";
+		if (!clsScreen::CheckAccessRights(clsUser::enPermissions::pLoginRegister))
+			return;
+
 		clsScreen::DrawScreenHeader("LOGIN REGISTER", "SCREEN");
 		vector<clsUser::stLoginInfo>vLogins = clsUser::GetLoginLogs();
 

@@ -66,6 +66,9 @@ public :
 	static void ShowManageUsersMenuScreen()
 	{
 		//cout << "\nManage users menu screen will be here..";
+		if (!clsScreen::CheckAccessRights(clsUser::enPermissions::pManageUsers))
+			return;
+
 		clsScreen::DrawScreenHeader("M A N A G E  U S E R S", "MENU SCREEN");
 		cout <<			setw(40) << "|" << "\t[1] SHOW USERS LIST";
 		cout << "\n" << setw(40) << "|" << "\t[2] ADD NEW USER(S)";
