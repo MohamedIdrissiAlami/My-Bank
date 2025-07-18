@@ -1,6 +1,5 @@
 #pragma once
 #include "./clsScreen.h"
-#include "./My-Cpp-Libraries/clsInputValidate/clsInputValidate.h"
 #include "./clsClientsListScreen.h"
 #include "./clsAddNewClientScreen.h"
 #include "./clsDeleteClientScreen.h"

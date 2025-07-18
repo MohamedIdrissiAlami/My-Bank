@@ -1,8 +1,6 @@
 #pragma once
-#include "My-Cpp-Libraries/clsInputValidate/clsInputValidate.h"
 #include "clsScreen.h"
 #include "Global.h"
-#include "clsUser.h"
 class clsLoginScreen :private clsScreen
 {
 public:

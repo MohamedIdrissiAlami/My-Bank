@@ -1,6 +1,5 @@
 #pragma once
 #include "clsScreen.h"
-#include "clsUser.h"
 class clsAddNewUserScreen :private clsScreen
 {
 private:
