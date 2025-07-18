@@ -29,7 +29,15 @@ private:
 	static clsUser _ConvertUserLineToRecord(string UserLine)
 	{
 		vector<string>vSplit = clsString::Split(UserLine, Separator);
-		return clsUser(enMode::enUpdateMode, vSplit[0], vSplit[1], vSplit[2], vSplit[3], vSplit[4], vSplit[5], stoi(vSplit[6]));
+		return clsUser(
+			enMode::enUpdateMode//set object mode to update mode
+			, vSplit[0]//first name
+			, vSplit[1]//last name
+			, vSplit[2]//email
+			, vSplit[3]//phone
+			, vSplit[4]//username
+			, clsUtil::DecryptText(vSplit[5],EncryptionKey)//password after decrypting it
+			, stoi(vSplit[6]));//user permissions
 	}
 	static vector<clsUser>_LoadUsersFromFileToVector(string FileName = UsersFileName)
 	{
@@ -58,7 +66,7 @@ private:
 		UserRecord += User.Email + Separator;
 		UserRecord += User.Phone + Separator;
 		UserRecord += User.UserName + Separator;
-		UserRecord += User.Password + Separator;
+		UserRecord += clsUtil::EncryptText(User.Password,EncryptionKey) + Separator;
 		UserRecord += to_string(User.Permissions);
 		return UserRecord;
 	}
