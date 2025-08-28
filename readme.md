@@ -2,7 +2,6 @@
 
 ![C++](https://img.shields.io/badge/C++-17-blue.svg)
 ![OOP](https://img.shields.io/badge/Object_Oriented-Yes-green.svg)
-![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 A complete console-based banking management system built with C++ and OOP principles.
 
@@ -35,7 +34,7 @@ A complete console-based banking management system built with C++ and OOP princi
 1. Clone the repository:
 ```bash
 git clone https://github.com/mohamedidrissialami/My-Bank.git  
-
+```
 2. Compile with g++:  
 g++ Bank.cpp -o MyBank  
 3. Run the program:  
